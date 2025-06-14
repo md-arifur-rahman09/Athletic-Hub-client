@@ -7,10 +7,12 @@ import { AuthContext } from '../../authContext/AuthContext';
 const MyPostedEvents = () => {
     const [events, setEvents] = useState([]);
     const { user } = use(AuthContext);
-     
+
 
     useEffect(() => {
-        fetch(`http://localhost:3000/events?email=${user.email}`)
+        fetch(`http://localhost:3000/events?email=${user.email}`, {
+            credentials: 'include'
+        })
             .then(res => res.json())
             .then(data => setEvents(data));
     }, [user?.email]);
@@ -36,8 +38,8 @@ const MyPostedEvents = () => {
                                 icon: "success"
                             });
 
-                            
-                            const remaining = events.filter(event => event._id !== id);
+
+                            const remaining = events?.filter(event => event._id !== id);
                             setEvents(remaining);
                         }
                     })
@@ -53,7 +55,7 @@ const MyPostedEvents = () => {
                     <tr>
                         <th>#</th>
                         <th>Event</th>
-                        
+
                         <th>Type</th>
                         <th>Description</th>
                         <th>HR</th>
@@ -62,7 +64,7 @@ const MyPostedEvents = () => {
                 </thead>
                 <tbody>
                     {
-                        events.map((event, index) => (
+                        events?.map((event, index) => (
                             <tr key={event._id}>
                                 <td>{index + 1}</td>
                                 <td>
@@ -80,16 +82,20 @@ const MyPostedEvents = () => {
                                         </div>
                                     </div>
                                 </td>
-                           
+
                                 <td>{event.type}</td>
                                 <td>{event.description}</td>
                                 <td>
                                     <span className='font-bold'>  {event.hr_email}</span>
                                     <br />
                                     {event.hr_name}
-                                  
+
                                 </td>
                                 <td>
+
+                                    <Link to={`/details/${event._id}`} className='btn btn-xs btn-success text-white mb-1'> details</Link>
+                                    <br />
+
                                     <Link to={`/update/${event._id}`}>
                                         <button className="btn btn-info btn-xs mb-1 text-white  ">Update</button>
                                     </Link>

@@ -4,7 +4,8 @@ import Event from './Event';
 
 const AllEvents = () => {
     const allEvents= useLoaderData();
-    console.log(allEvents)
+    console.log(allEvents);
+
     return (
         <div>
          <h1 className='text-5xl  font-semibold text-center my-5'>Total events : {allEvents.length}</h1>

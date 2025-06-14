@@ -14,6 +14,7 @@ import BookingForm from "../pages/BookingForm/BookingForm";
 import MyBookings from "../pages/MyBookings/MyBookings";
 import MyPostedEvents from "../pages/MyPostedEvents/MyPostedEvents";
 import UpdateEvent from "../pages/UpdateEvent/UpdateEvent";
+import MyPostedEventsBookings from "../pages/MyPostedEventsBookings/MyPostedEventsBookings";
 
 
 
@@ -66,6 +67,13 @@ export const router = createBrowserRouter([
                 path: '/update/:id',
                 element: <PrivateRoute><UpdateEvent></UpdateEvent> </PrivateRoute>,
                 loader: ({params})=> fetch(`http://localhost:3000/event/${params.id}`)
+            },
+            {
+                path: '/details/:id',
+                element: <PrivateRoute> <MyPostedEventsBookings></MyPostedEventsBookings></PrivateRoute>,
+                loader: ({params})=> fetch(`http://localhost:3000/events/${params.id}`,{
+                    credentials: "include"
+                })
             }
         ]
 

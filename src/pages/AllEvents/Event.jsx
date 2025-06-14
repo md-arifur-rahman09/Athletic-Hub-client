@@ -2,19 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Event = ({ event }) => {
-    const {
-        image,
-        eventName,
-        type,
-        description,
-        location,
-        date,
-        localTime,
-        participants,
-        entryFee,
-        currency,
-        _id 
-    } = event;
+    const {  image, eventName, type, description, location, date, localTime, participants, entryFee, currency, _id } = event;
 
     return (
         <div className="max-w-md mx-auto bg-white rounded-2xl shadow-lg overflow-hidden md:max-w-2xl my-10 transition transform hover:scale-105 hover:shadow-xl duration-300">

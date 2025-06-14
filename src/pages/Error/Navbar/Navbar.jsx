@@ -89,7 +89,7 @@ const Navbar = () => {
                     user ?
                         <>
 
-                            <img className='w-9 mr-3 rounded-md' src={user.photoURL} title={`${user.displayName} - ${user.email}`} />
+                            <img className='w-9 mr-3 rounded-md' src={user?.photoURL} title={`${user.displayName} - ${user.email}`} />
 
                             <Link to='/login'>  <button onClick={handleLogout} className='btn'>Logout</button></Link>
                         </>

@@ -1,15 +1,43 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../authContext/AuthContext';
-import { useParams } from 'react-router';
+import {  useNavigate, useParams } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Loading from '../Loading/Loading';
 
 
 
 
 const BookingForm = () => {
+    const [datas, setDatas] = useState([]);
+    // const [loading, setLoading] = useState(true)
     const { user } = use(AuthContext);
     const { id } = useParams();
+    const navigate = useNavigate();
+
+  
+
+
+    useEffect(() => {
+        fetch('http://localhost:3000/allEvents')
+            .then(res => res.json())
+            .then(data => {
+                setDatas(data);
+                // setLoading(false);
+            }
+
+            )
+    }, []);
+
+    //   if (loading) {
+    //     return <Loading></Loading>
+    // }
+    const remainingData = datas.find(d => d._id === id);
+    console.log(remainingData);
+
+    const handleBack = () => {
+        navigate(-1)
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,6 +50,8 @@ const BookingForm = () => {
         axios.post('http://localhost:3000/bookings', eventBookingData)
             .then(res => {
                 console.log(res.data);
+
+
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -29,6 +59,9 @@ const BookingForm = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+
+                // e.target.reset();
+
             })
             .catch(error => console.log(error))
     }
@@ -37,7 +70,8 @@ const BookingForm = () => {
 
     return (
         <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl mt-10">
-            <h2 className="text-2xl font-bold mb-6 text-center">Book for: {id}  </h2>
+            <button onClick={handleBack} className='btn btn-xs hover:bg-blue-400 sm:text-2xl lg:text-xs' > ⬅ <span className='hidden lg:block'>Go Back</span></button>
+            <h2 className="text-2xl font-bold mb-6 text-center  ">Book for : <span className='text-cyan-800 '>{remainingData?.type} ({remainingData?.eventName})</span> </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
 
                 <div>

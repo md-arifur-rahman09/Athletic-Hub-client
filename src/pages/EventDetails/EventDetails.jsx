@@ -15,12 +15,14 @@ const EventDetails = () => {
 
     return (
         <div>
-            <h1 className='text-3xl font-semibold p-5'> Details of : {eventName}</h1>
+            <h1 className='text-3xl font-semibold p-5'> Details of : <span className='text-cyan-800 font-bold'> {type}({eventName})</span> </h1>
             <div className="max-w-md mx-auto bg-white rounded-2xl shadow-lg overflow-hidden md:max-w-2xl my-10 transition transform hover:scale-105 hover:shadow-xl duration-300">
                 <div className="md:flex">
+
                     <div className="md:shrink-0">
-                        <img className=" w-full object-cover md:w-72" src={image} alt={eventName} />
+                        <img className="w-full px-2 object-cover md:w-72" src={image} alt={eventName} />
                     </div>
+
                     <div className="p-6 flex flex-col justify-between">
                         <div>
                             <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{type}</div>
