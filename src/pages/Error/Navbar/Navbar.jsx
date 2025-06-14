@@ -5,7 +5,19 @@ import Swal from 'sweetalert2';
 
 const Navbar = () => {
     const { user, logoutUser } = use(AuthContext);
-    console.log(user)
+    console.log(user);
+    const links = <>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/allEvents'>All Events</NavLink></li>
+
+        {user && <>
+        <li><NavLink to='/addEvent'>Add Event</NavLink></li>
+        <li><NavLink to='/myBookings'>My Bookings</NavLink></li>
+        <li><NavLink to='/myPostedEvents'>My Posted Events</NavLink></li>
+   
+        </>}
+
+    </>
 
     const handleLogout = () => {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -51,11 +63,7 @@ const Navbar = () => {
         });
     };
 
-    const links = <>
-        <li><NavLink to='/'>Home</NavLink></li>
 
-
-    </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
@@ -80,7 +88,9 @@ const Navbar = () => {
                 {
                     user ?
                         <>
-                            <p className='bg-green-100 p-2 rounded-lg mx-2'> {user.email}</p>
+
+                            <img className='w-9 mr-3 rounded-md' src={user.photoURL} title={`${user.displayName} - ${user.email}`} />
+
                             <Link to='/login'>  <button onClick={handleLogout} className='btn'>Logout</button></Link>
                         </>
                         : <> <Link className='btn' to='/login'>Login</Link> </>

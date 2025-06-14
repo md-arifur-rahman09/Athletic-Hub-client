@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../pages/Error/Navbar/Navbar';
 import Footer from '../pages/Footer/Footer';
@@ -10,7 +10,9 @@ const Root = () => {
                 <Navbar></Navbar>
             </nav>
             <main>
-                <Outlet></Outlet>
+                <Suspense fallback={<h2>Loading....</h2>}>
+                    <Outlet></Outlet>
+                </Suspense>
             </main>
             <footer>
                 <Footer></Footer>
