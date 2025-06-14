@@ -66,19 +66,7 @@ const AddEvent = () => {
                     </div>
 
 
-                    <div>
-
-                        <label className="label">Date</label>
-                        <br />
-                        <input type="date" name='date' className="input" placeholder="Date" />
-                    </div>
-
-                    <div>
-                        <label className="label">Local Time</label>
-                        <br />
-                        <input type="time" name='localTime' className="input" placeholder="time" />
-
-                    </div>
+                  
 
                     <div>
                         <label className="label">Location</label>
@@ -90,6 +78,20 @@ const AddEvent = () => {
                         <label className="label">Image URL</label>
                         <br />
                         <input type="url" name='image' className="input" placeholder="Image URL" />
+                    </div>
+
+                      <div>
+
+                        <label className="label">Date</label>
+                        <br />
+                        <input type="date" name='date' className="input" placeholder="Date" />
+                    </div>
+
+                    <div>
+                        <label className="label">Local Time</label>
+                        <br />
+                        <input type="time" name='localTime' className="input" placeholder="time" />
+
                     </div>
 
                     <div>

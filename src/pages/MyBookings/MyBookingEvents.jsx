@@ -1,13 +1,13 @@
 import React from 'react';
 import Booking from './Booking';
 
-const MyBookingEvents = ({ bookings }) => {
+const MyBookingEvents = ({ bookings, setBookings }) => {
     return (
         <div className="overflow-x-auto">
             <table className="table">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Event Type</th>
@@ -16,8 +16,13 @@ const MyBookingEvents = ({ bookings }) => {
                 </thead>
                 <tbody>
                     {
-                        bookings.map((book,index) => (
-                            <Booking key={book._id} book={book} index={index} />
+                        bookings.map((book, index) => (
+                            <Booking
+                                key={book._id}
+                                bookings={bookings}
+                                setBookings={setBookings}
+                                book={book}
+                                index={index} />
                         ))
                     }
                 </tbody>

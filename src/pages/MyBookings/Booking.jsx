@@ -3,9 +3,11 @@ import React from 'react';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
-const Booking = ({ book, index }) => {
+const Booking = ({ index, book, bookings, setBookings }) => {
+
     // console.log(book)
     const { name, phone, email, _id } = book;
+
 
 
     const handleCancel = (id) => {
@@ -30,6 +32,8 @@ const Booking = ({ book, index }) => {
                             icon: "success"
                         });
 
+                        const remainingEvents =  bookings.filter(b => b._id !== id);
+                        setBookings(remainingEvents)
 
                     })
                     .catch(error => console.log(error))
