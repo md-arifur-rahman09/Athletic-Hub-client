@@ -10,7 +10,11 @@ const Booking = ({ index, book, bookings, setBookings }) => {
 
 
 
+  
+   
     const handleCancel = (id) => {
+        
+
 
         Swal.fire({
             title: "Are you sure?",

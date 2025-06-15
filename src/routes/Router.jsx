@@ -15,6 +15,9 @@ import MyBookings from "../pages/MyBookings/MyBookings";
 import MyPostedEvents from "../pages/MyPostedEvents/MyPostedEvents";
 import UpdateEvent from "../pages/UpdateEvent/UpdateEvent";
 import MyPostedEventsBookings from "../pages/MyPostedEventsBookings/MyPostedEventsBookings";
+import About from "../pages/Footer/About";
+import TermsAndConditions from "../pages/Footer/TermsAndConditions";
+import Services from "../pages/Footer/Services";
 
 
 
@@ -74,6 +77,18 @@ export const router = createBrowserRouter([
                 loader: ({params})=> fetch(`http://localhost:3000/events/${params.id}`,{
                     credentials: "include"
                 })
+            },
+            {
+                path    : '/about',
+                Component:About
+            },
+            {
+                path: '/terms',
+                Component: TermsAndConditions
+            },
+            {
+                path: '/services',
+                Component: Services
             }
         ]
 

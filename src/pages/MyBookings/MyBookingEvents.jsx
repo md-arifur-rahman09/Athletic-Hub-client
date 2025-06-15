@@ -1,9 +1,12 @@
 import React from 'react';
 import Booking from './Booking';
 
+
 const MyBookingEvents = ({ bookings, setBookings }) => {
+ 
     return (
         <div className="overflow-x-auto">
+            <h1 className='text-4xl text-center font-bold my-10'>My Total Bookings : {bookings.length}</h1>
             <table className="table">
                 <thead>
                     <tr>
@@ -19,6 +22,7 @@ const MyBookingEvents = ({ bookings, setBookings }) => {
                         bookings.map((book, index) => (
                             <Booking
                                 key={book._id}
+                               
                                 bookings={bookings}
                                 setBookings={setBookings}
                                 book={book}

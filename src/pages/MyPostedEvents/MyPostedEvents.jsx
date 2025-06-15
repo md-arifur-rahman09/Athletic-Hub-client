@@ -50,6 +50,7 @@ const MyPostedEvents = () => {
 
     return (
         <div className="overflow-x-auto">
+               <h1 className='text-4xl text-center font-bold my-10'>My Total Posted Events : {events.length}</h1>
             <table className="table">
                 <thead>
                     <tr>

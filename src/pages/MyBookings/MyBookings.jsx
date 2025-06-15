@@ -5,22 +5,27 @@ import MyBookingEvents from './MyBookingEvents';
 import { bookingEventsPromise } from '../../api/bookingEventApi';
 
 
+
 const MyBookings = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
 
 
+
+
     useEffect(() => {
-         
-            bookingEventsPromise(user.email)
-                .then(data => {
-                    setBookings(data);
-                
-                });
-        
+
+        bookingEventsPromise(user.email)
+            .then(data => {
+                setBookings(data);
+
+
+
+            });
+
     }, [user?.email]);
 
-   
+
 
     return <MyBookingEvents bookings={bookings} setBookings={setBookings} />;
 };

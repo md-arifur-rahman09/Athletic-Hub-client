@@ -5,8 +5,7 @@ import { Link, useLoaderData } from 'react-router';
 const EventDetails = () => {
     const eventDetails = useLoaderData();
     // console.log(eventDetails);
-    const {
-        image, eventName, type, description, location, date, localTime, participants, entryFee, currency, _id } = eventDetails;
+    const { image, eventName, type, description, location, date, localTime, participants, entryFee, currency, _id } = eventDetails;
 
         
 

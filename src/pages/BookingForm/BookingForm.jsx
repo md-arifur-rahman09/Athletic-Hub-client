@@ -1,21 +1,20 @@
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../authContext/AuthContext';
-import {  useNavigate, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import Loading from '../Loading/Loading';
+
 
 
 
 
 const BookingForm = () => {
     const [datas, setDatas] = useState([]);
+
     // const [loading, setLoading] = useState(true)
     const { user } = use(AuthContext);
     const { id } = useParams();
     const navigate = useNavigate();
-
-  
 
 
     useEffect(() => {
@@ -29,18 +28,33 @@ const BookingForm = () => {
             )
     }, []);
 
+
+
+
+
+
+
+
     //   if (loading) {
     //     return <Loading></Loading>
     // }
+
+
+
     const remainingData = datas.find(d => d._id === id);
-    console.log(remainingData);
+    // console.log(remainingData);
 
     const handleBack = () => {
         navigate(-1)
     };
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+
+
         const form = e.target;
         const formData = new FormData(form);
         const bookingData = Object.fromEntries(formData.entries());

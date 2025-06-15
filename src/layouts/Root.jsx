@@ -5,11 +5,11 @@ import Footer from '../pages/Footer/Footer';
 
 const Root = () => {
     return (
-        <div>
+        <div >
             <nav>
                 <Navbar></Navbar>
             </nav>
-            <main>
+            <main className='min-h-screen mb-10'>
                 <Suspense fallback={<h2>Loading....</h2>}>
                     <Outlet></Outlet>
                 </Suspense>
