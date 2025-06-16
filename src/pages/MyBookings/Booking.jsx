@@ -27,16 +27,16 @@ const Booking = ({ index, book, bookings, setBookings }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:3000/bookings/${id}`)
+                axios.delete(`https://athletic-hub-server-blue.vercel.app/bookings/${id}`)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         Swal.fire({
                             title: "Deleted!",
                             text: "Your file has been deleted.",
                             icon: "success"
                         });
 
-                        const remainingEvents =  bookings.filter(b => b._id !== id);
+                        const remainingEvents =  bookings?.filter(b => b._id !== id);
                         setBookings(remainingEvents)
 
                     })

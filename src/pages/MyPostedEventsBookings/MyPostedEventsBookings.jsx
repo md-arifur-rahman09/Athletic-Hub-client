@@ -1,9 +1,11 @@
 import React from 'react';
 import { useLoaderData } from 'react-router';
+import UseTitle from '../../hooks/UseTitle';
 
 const MyPostedEventsBookings = () => {
     const myPostedEventsBookings =useLoaderData();
     // console.log(myPostedEventsBookings);
+    UseTitle('Total Bookings In Single Event')
 
     
     return (

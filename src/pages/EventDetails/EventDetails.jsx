@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router';
+import UseTitle from '../../hooks/UseTitle';
 
 
 const EventDetails = () => {
     const eventDetails = useLoaderData();
+    UseTitle('Event Details')
     // console.log(eventDetails);
     const { image, eventName, type, description, location, date, localTime, participants, entryFee, currency, _id } = eventDetails;
 

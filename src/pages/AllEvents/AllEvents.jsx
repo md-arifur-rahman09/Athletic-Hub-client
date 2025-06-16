@@ -1,10 +1,12 @@
 import React from 'react';
 import { useLoaderData } from 'react-router';
 import Event from './Event';
+import UseTitle from '../../hooks/UseTitle';
 
 const AllEvents = () => {
     const allEvents= useLoaderData();
-    console.log(allEvents);
+    UseTitle('All Events')
+    // console.log(allEvents);
 
     return (
         <div>

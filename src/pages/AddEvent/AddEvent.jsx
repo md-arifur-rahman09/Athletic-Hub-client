@@ -2,10 +2,16 @@ import React, { use } from 'react';
 import { AuthContext } from '../../authContext/AuthContext';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import UseTitle from '../../hooks/UseTitle';
+
+
 
 const AddEvent = () => {
 
     const { user } = use(AuthContext);
+    UseTitle('Add Event')
+
+
 
 
     const handleSubmit = (e) => {
@@ -14,10 +20,10 @@ const AddEvent = () => {
         const formData = new FormData(form);
         const eventInfo = Object.fromEntries(formData.entries());
 
-        console.log(eventInfo);
-        axios.post('http://localhost:3000/allEvents', eventInfo)
-            .then(res => {
-                console.log(res.data);
+        // console.log(eventInfo);
+        axios.post('https://athletic-hub-server-blue.vercel.app/allEvents', eventInfo)
+            .then(()=> {
+                // console.log(res.data);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -26,11 +32,11 @@ const AddEvent = () => {
                     timer: 1500
                 });
 
-                // form.reset();
-                
+                form.reset();
+
             })
-            .catch(error => {
-                console.log(error);
+            .catch(() => {
+                // console.log(error);
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -40,117 +46,110 @@ const AddEvent = () => {
             })
     }
     return (
-        <div className="card bg-base-100  max-w-3xl shrink-0 shadow-2xl mx-auto mt-10">
-            <div className="card-body">
-                <h1 className='text-5xl font-bold text-center'>Add New Event</h1>
-                <form onSubmit={handleSubmit} className="fieldset grid grid-cols-1 lg:grid-cols-2 ">
-
-                    <div>
-
-                        <label className="label"> Event Name</label>
-                        <br />
-                        <input type="text" name='eventName' className="input" placeholder="Event Name" />
-                    </div>
-
-                    <div>
-                        <label className="label">Event Type</label>
-                        <br />
-                        <select defaultValue="Select one" name='type' className="select">
-                            <option disabled={true}>Select one</option>
-                            <option>Swimming</option>
-                            <option>Long Jump</option>
-                            <option>High Jump</option>
-                            <option>Shooting</option>
-                            <option>Archery</option>
-                            <option>Football</option>
-                            <option>Hockey</option>
-                        </select>
-                    </div>
 
 
-                  
+     <div className="max-w-4xl mx-auto mt-12 bg-white rounded-2xl shadow-lg p-8">
+  <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">Add New Event</h1>
 
-                    <div>
-                        <label className="label">Location</label>
-                        <br />
-                        <input type="text" name='location' className="input" placeholder="Location" />
-                    </div>
+  <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <div>
-                        <label className="label">Image URL</label>
-                        <br />
-                        <input type="url" name='image' className="input" placeholder="Image URL" />
-                    </div>
+    {/* Event Name */}
+    <div>
+      <label htmlFor="eventName" className="block text-sm font-medium text-gray-700 mb-1">Event Name</label>
+      <input id="eventName" type="text" name="eventName" className="input input-bordered w-full" placeholder="Event Name" required/>
+    </div>
 
-                      <div>
+    {/* Event Type */}
+    <div>
+      <label htmlFor="type" className="block text-sm font-medium text-gray-700 mb-1">Event Type</label>
+      <select id="type" name="type" defaultValue="Select one" className="select select-bordered w-full" required>
+        <option disabled>Select one</option>
+        <option>Swimming</option>
+        <option>Long Jump</option>
+        <option>High Jump</option>
+        <option>Shooting</option>
+        <option>Archery</option>
+        <option>Football</option>
+        <option>Hockey</option>
+      </select>
+    </div>
 
-                        <label className="label">Date</label>
-                        <br />
-                        <input type="date" name='date' className="input" placeholder="Date" />
-                    </div>
+    {/* Location */}
+    <div>
+      <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+      <input id="location" type="text" name="location" className="input input-bordered w-full" placeholder="Location" required />
+    </div>
 
-                    <div>
-                        <label className="label">Local Time</label>
-                        <br />
-                        <input type="time" name='localTime' className="input" placeholder="time" />
+    {/* Image URL */}
+    <div>
+      <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+      <input id="image" type="url" name="image" className="input input-bordered w-full" placeholder="Image URL" required />
+    </div>
 
-                    </div>
+    {/* Date */}
+    <div>
+      <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+      <input id="date" type="date" name="date" className="input input-bordered w-full" required/>
+    </div>
 
-                    <div>
-                        <label className="label">Maximum Participants</label>
-                        <br />
-                        <input type="text" className="input" name='participants' placeholder="max. participants" />
-                    </div>
+    {/* Local Time */}
+    <div>
+      <label htmlFor="localTime" className="block text-sm font-medium text-gray-700 mb-1">Local Time</label>
+      <input id="localTime" type="time" name="localTime" className="input input-bordered w-full" required />
+    </div>
 
-                    <div>
-                        <label className="label">Entry Fee</label>
-                        <br />
-                        <input type="number" name='entryFee' className="input" placeholder="Entry Fee" />
-                    </div>
+    {/* Participants */}
+    <div>
+      <label htmlFor="participants" className="block text-sm font-medium text-gray-700 mb-1">Max Participants</label>
+      <input id="participants" type="number" name="participants" className="input input-bordered w-full" placeholder="Maximum" required />
+    </div>
 
-                    <div>
-                        <label className="label">Currency</label>
-                        <br />
-                        <select defaultValue="pick one" name='currency' className="select">
-                            <option disabled={true}>pick one</option>
-                            <option>USD</option>
-                            <option>EURO</option>
-                            <option>BDT</option>
-                        </select>
-                    </div>
+    {/* Entry Fee & Currency */}
+    <div className="flex flex-col md:flex-row gap-3 md:col-span-2">
+      <div className="flex-1">
+        <label htmlFor="entryFee" className="block text-sm font-medium text-gray-700 mb-1">Entry Fee</label>
+        <input id="entryFee" type="number" name="entryFee" className="input input-bordered w-full" placeholder="Entry Fee" required/>
+      </div>
+      <div className="flex-1">
+        <label htmlFor="currency" className="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+        <select id="currency" name="currency" defaultValue="pick one" className="select select-bordered w-full" required>
+          <option disabled>pick one</option>
+          <option>USD</option>
+          <option>EURO</option>
+          <option>BDT</option>
+        </select>
+      </div>
+    </div>
+
+    {/* Description */}
+    <div className="md:col-span-2">
+      <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+      <textarea id="description" name="description" className="textarea textarea-bordered w-full h-28 resize-none" placeholder="Write event description..." required></textarea>
+    </div>
+
+    {/* Creator Name */}
+    <div>
+      <label htmlFor="hr_name" className="block text-sm font-medium text-gray-700 mb-1">Creator Name</label>
+      <input id="hr_name" type="text" name="hr_name" className="input input-bordered w-full" defaultValue={user?.displayName} readOnly />
+    </div>
+
+    {/* Creator Email */}
+    <div>
+      <label htmlFor="hr_email" className="block text-sm font-medium text-gray-700 mb-1">Creator Email</label>
+      <input id="hr_email" type="email" name="hr_email" className="input input-bordered w-full" defaultValue={user?.email} readOnly />
+    </div>
+
+    {/* Submit Button */}
+    <div className="md:col-span-2">
+      <button type="submit" className="btn btn-neutral w-full text-lg">
+        Add Event
+      </button>
+    </div>
+
+  </form>
+</div>
 
 
-
-
-
-                    <div className="lg:col-span-2">
-                        <label className="label">Description</label>
-                        <br />
-                        <textarea className="textarea lg:w-full " name="description" placeholder="Description"></textarea>
-                    </div>
-
-                    <div>
-
-                        <label className="label">Creator Name</label>
-                        <br />
-                        <input type="text" name='hr_name' className="input" defaultValue={user.displayName} />
-                    </div>
-
-                    <div>
-                        <label className="label">Creator Email</label>
-                        <br />
-                        <input type="email" name='hr_email' className="input" defaultValue={user.email} />
-                    </div>
-
-
-
-
-
-                    <input className='btn btn-neutral lg:w-full lg:col-span-2 mt-4' type="submit" value="Add Event" />
-
-                </form>
-            </div>
-        </div>
     );
 };
 

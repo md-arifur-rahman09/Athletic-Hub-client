@@ -3,14 +3,16 @@ import React, { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../authContext/AuthContext';
+import UseTitle from '../../hooks/UseTitle';
 
 const MyPostedEvents = () => {
     const [events, setEvents] = useState([]);
     const { user } = use(AuthContext);
+    UseTitle('My Posted Events')
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/events?email=${user.email}`, {
+        fetch(`https://athletic-hub-server-blue.vercel.app/events?email=${user.email}`, {
             credentials: 'include'
         })
             .then(res => res.json())
@@ -29,7 +31,7 @@ const MyPostedEvents = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:3000/events/${id}`)
+                axios.delete(`https://athletic-hub-server-blue.vercel.app/events/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             Swal.fire({
@@ -43,14 +45,17 @@ const MyPostedEvents = () => {
                             setEvents(remaining);
                         }
                     })
-                    .catch(error => console.log(error));
+                    .catch((error) => {
+                        console.log(error);
+                    }
+                    );
             }
         });
     };
 
     return (
         <div className="overflow-x-auto">
-               <h1 className='text-4xl text-center font-bold my-10'>My Total Posted Events : {events.length}</h1>
+            <h1 className='text-4xl text-center font-bold my-10'>My Total Posted Events : {events.length}</h1>
             <table className="table">
                 <thead>
                     <tr>

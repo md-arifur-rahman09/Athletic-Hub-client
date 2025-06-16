@@ -5,10 +5,10 @@ import Swal from 'sweetalert2';
 
 const Logout = () => {
 
-    const { createUser, user, profileUpdate, googleSignIn } = use(AuthContext);
+    const { createUser,  profileUpdate, googleSignIn } = use(AuthContext);
     const navigate = useNavigate();
 
-    console.log(user)
+    // console.log(user);
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -20,13 +20,15 @@ const Logout = () => {
         const info = { displayName, photoURL }
         //  create User 
         createUser(email, password)
-            .then(result => {
-                console.log(result.user);
+            .then(() => {
+                // console.log(result.user);
 
                 // update profile
                 profileUpdate(info)
                     .then(() => { })
-                    .catch(error => console.log(error))
+                    .catch(() =>{
+                        //  console.log(error);
+                        })
 
 
                 //success  alert 
@@ -41,15 +43,17 @@ const Logout = () => {
                 navigate('/');
 
             })
-            .catch(error => console.log(error))
+            .catch(() =>{
+                //  console.log(error)
+            })
 
     }
     // google signin
 
     const handleGoogle = () => {
         googleSignIn()
-            .then((result) => {
-                console.log(result.user);
+            .then(() => {
+                // console.log(result.user);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -60,8 +64,8 @@ const Logout = () => {
                 navigate('/');
 
             })
-            .catch(error => {
-                console.log(error.message)
+            .catch(() => {
+                // console.log(error.message)
             })
     }
 

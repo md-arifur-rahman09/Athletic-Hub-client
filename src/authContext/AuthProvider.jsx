@@ -52,16 +52,20 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
 
             setUser(currentUser);
-            const email = currentUser.email
+            const email = currentUser?.email
 
             // generate jwt  token
-            axios.post('http://localhost:3000/jwt', { email }, {
+            axios.post('https://athletic-hub-server-blue.vercel.app/jwt', { email }, {
                 withCredentials: true
             })
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data);
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    //  console.log(error);
+                }
+                   
+                )
 
 
             setLoading(false);

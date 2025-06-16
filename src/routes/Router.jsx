@@ -44,12 +44,12 @@ export const router = createBrowserRouter([
             {
                 path: '/allEvents',
                 Component: AllEvents,
-                loader: () => fetch('http://localhost:3000/allEvents')
+                loader: () => fetch('https://athletic-hub-server-blue.vercel.app/allEvents')
             },
             {
                 path: '/event/:id',
                 Component: EventDetails,
-                loader: ({ params }) => fetch(`http://localhost:3000/event/${params.id}`)
+                loader: ({ params }) => fetch(`https://athletic-hub-server-blue.vercel.app/event/${params.id}`)
             },
             {
                 path: '/bookingForm/:id',
@@ -69,12 +69,12 @@ export const router = createBrowserRouter([
             {
                 path: '/update/:id',
                 element: <PrivateRoute><UpdateEvent></UpdateEvent> </PrivateRoute>,
-                loader: ({params})=> fetch(`http://localhost:3000/event/${params.id}`)
+                loader: ({params})=> fetch(`https://athletic-hub-server-blue.vercel.app/event/${params.id}`)
             },
             {
                 path: '/details/:id',
                 element: <PrivateRoute> <MyPostedEventsBookings></MyPostedEventsBookings></PrivateRoute>,
-                loader: ({params})=> fetch(`http://localhost:3000/events/${params.id}`,{
+                loader: ({params})=> fetch(`https://athletic-hub-server-blue.vercel.app/events/${params.id}`,{
                     credentials: "include"
                 })
             },

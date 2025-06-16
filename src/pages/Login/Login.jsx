@@ -1,11 +1,12 @@
 import React, { useRef, use } from 'react';
 import { AuthContext } from '../../authContext/AuthContext';
 import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 
 const Login = () => {
     const { loginUser, forgetPassword, googleSignIn } = use(AuthContext);
     const navigate = useNavigate();
+    const location= useLocation();
 
     // Creating references for email input
     const emailRef = useRef(null);
@@ -16,12 +17,12 @@ const Login = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
 
-        console.log(email, password);
+        // console.log(email, password);
 
         // Login user
         loginUser(email, password)
-            .then(result => {
-                console.log(result.user);
+            .then(() => {
+                // console.log(result.user);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -29,7 +30,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/');
+                navigate(location.state|| '/');
             })
             .catch(error => {
                 console.error("Login Error:", error);
@@ -75,8 +76,8 @@ const Login = () => {
 
     const handleGoogle = () => {
         googleSignIn()
-            .then((result) => {
-                console.log(result.user);
+            .then(() => {
+                // console.log(result.user);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -84,11 +85,11 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/');
+                navigate(location.state || '/');
 
             })
-            .catch( error=> {
-                console.log(error.message)
+            .catch(()=> {
+                // console.log(error.message);
             })
     }
 

@@ -19,7 +19,7 @@ const MyBookingEvents = ({ bookings, setBookings }) => {
                 </thead>
                 <tbody>
                     {
-                        bookings.map((book, index) => (
+                        bookings?.map((book, index) => (
                             <Booking
                                 key={book._id}
                                

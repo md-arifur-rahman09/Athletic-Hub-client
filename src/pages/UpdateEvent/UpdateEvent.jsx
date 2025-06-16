@@ -2,21 +2,24 @@ import axios from 'axios';
 import React from 'react';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
+import UseTitle from '../../hooks/UseTitle';
 
 
 const UpdateEvent = () => {
-
+    UseTitle('Update Event')
     const event = useLoaderData();
+
     const { _id, eventName, type, date, localTime, location, image, participants, entryFee, currency, description } = event;
+
     const handleSubmit = (e, id) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
         const updatedEvent = Object.fromEntries(formData.entries());
 
-        axios.put(`http://localhost:3000/events/${id}`, updatedEvent)
+        axios.put(`https://athletic-hub-server-blue.vercel.app/events/${id}`, updatedEvent)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.modifiedCount) {
                     Swal.fire({
                         position: "top-end",
@@ -29,27 +32,40 @@ const UpdateEvent = () => {
 
 
             })
-            .catch(error => console.log(error))
+            .catch(() => {
+                //  console.log(error);
+            })
     }
 
     return (
-        <div className="card bg-base-100  max-w-3xl shrink-0 shadow-2xl mx-auto mt-10">
+        <div className="card bg-base-100 max-w-3xl shadow-2xl mx-auto mt-10">
             <div className="card-body">
-                <h1 className='text-5xl font-bold text-center'>Add New Event</h1>
-                <form onSubmit={e => handleSubmit(e, _id)} className="fieldset grid grid-cols-1 lg:grid-cols-2 ">
+                <h1 className="text-5xl font-bold text-center mb-6">Update Event</h1>
 
+                <form onSubmit={e => handleSubmit(e, _id)} className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+                    {/* Event Name */}
                     <div>
-
-                        <label className="label"> Event Name</label>
-                        <br />
-                        <input type="text" name='eventName' className="input" placeholder="Event Name" defaultValue={eventName} />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Event Name</label>
+                        <input
+                            type="text"
+                            name="eventName"
+                            className="input input-bordered w-full"
+                            defaultValue={eventName}
+                            required
+                        />
                     </div>
 
+                    {/* Event Type */}
                     <div>
-                        <label className="label">Event Type</label>
-                        <br />
-                        <select defaultValue={type} name='type' className="select" required >
-                            <option disabled={true}>Select one</option>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Event Type</label>
+                        <select
+                            name="type"
+                            className="select select-bordered w-full"
+                            defaultValue={type}
+                            required
+                        >
+                            <option disabled>Select one</option>
                             <option>Swimming</option>
                             <option>Long Jump</option>
                             <option>High Jump</option>
@@ -60,88 +76,122 @@ const UpdateEvent = () => {
                         </select>
                     </div>
 
-
+                    {/* Date */}
                     <div>
-
-                        <label className="label">Date</label>
-                        <br />
-                        <input type="date" name='date' className="input" placeholder="Date" defaultValue={date} />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                        <input
+                            type="date"
+                            name="date"
+                            className="input input-bordered w-full"
+                            defaultValue={date}
+                            required
+                        />
                     </div>
 
+                    {/* Time */}
                     <div>
-                        <label className="label">Local Time</label>
-                        <br />
-                        <input type="time" name='localTime' className="input" placeholder="time" defaultValue={localTime} />
-
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Local Time</label>
+                        <input
+                            type="time"
+                            name="localTime"
+                            className="input input-bordered w-full"
+                            defaultValue={localTime}
+                            required
+                        />
                     </div>
 
+                    {/* Location */}
                     <div>
-                        <label className="label">Location</label>
-                        <br />
-                        <input type="text" name='location' className="input" placeholder="Location" defaultValue={location} />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                        <input
+                            type="text"
+                            name="location"
+                            className="input input-bordered w-full"
+                            defaultValue={location}
+                            required
+                        />
                     </div>
 
+                    {/* Image */}
                     <div>
-                        <label className="label">Image URL</label>
-                        <br />
-                        <input type="url" name='image' className="input" placeholder="Image URL" defaultValue={image} />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                        <input
+                            type="url"
+                            name="image"
+                            className="input input-bordered w-full"
+                            defaultValue={image}
+                            required
+                        />
                     </div>
 
+                    {/* Participants */}
                     <div>
-                        <label className="label">Maximum Participants</label>
-                        <br />
-                        <input type="text" className="input" name='participants' placeholder="max. participants" defaultValue={participants} />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Max Participants</label>
+                        <input
+                            type="number"
+                            name="participants"
+                            className="input input-bordered w-full"
+                            defaultValue={participants}
+                            min="1"
+                            required
+                        />
                     </div>
 
-                    <div>
-                        <label className="label">Entry Fee</label>
-                        <br />
-                        <input type="number" name='entryFee' className="input" placeholder="Entry Fee" defaultValue={entryFee} />
+                    {/* Entry Fee & Currency */}
+                    <div className="flex gap-2">
+                        <div className="flex-1">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Entry Fee</label>
+                            <input
+                                type="number"
+                                name="entryFee"
+                                className="input input-bordered w-full"
+                                defaultValue={entryFee}
+                                min="0"
+                                required
+                            />
+                        </div>
+
+                        <div className="flex-1">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+                            <select
+                                name="currency"
+                                className="select select-bordered w-full"
+                                defaultValue={currency}
+                                required
+                            >
+                                <option disabled>pick one</option>
+                                <option>USD</option>
+                                <option>EURO</option>
+                                <option>BDT</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div>
-                        <label className="label">Currency</label>
-                        <br />
-                        <select defaultValue={currency} name='currency' className="select" required>
-                            <option disabled={true}>pick one</option>
-                            <option>USD</option>
-                            <option>EURO</option>
-                            <option>BDT</option>
-                        </select>
-                    </div>
-
-
-
-
-
+                    {/* Description */}
                     <div className="lg:col-span-2">
-                        <label className="label">Description</label>
-                        <br />
-                        <textarea className="textarea lg:w-full " name="description" placeholder="Description" defaultValue={description} ></textarea>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                        <textarea
+                            name="description"
+                            className="textarea textarea-bordered w-full h-28 resize-none"
+                            defaultValue={description}
+                            required
+                        />
                     </div>
 
-                    {/* <div>
-
-                        <label className="label">Creator Name</label>
-                        <br />
-                        <input type="text" name='hr_name' className="input" defaultValue={user.displayName} />
-                    </div> */}
-
-                    {/* <div>
-                        <label className="label">Creator Email</label>
-                        <br />
-                        <input type="email" name='hr_email' className="input" defaultValue={user.email} />
-                    </div> */}
-
-
-
-
-
-                    <input className='btn btn-neutral lg:w-full lg:col-span-2 mt-4' type="submit" value="Add Event" />
+                    {/* Submit Button */}
+                    <div className="lg:col-span-2">
+                        <input
+                            type="submit"
+                            value="Update Event"
+                            className="btn btn-neutral w-full text-lg mt-4"
+                        />
+                    </div>
 
                 </form>
             </div>
         </div>
+
+
     );
 };
 

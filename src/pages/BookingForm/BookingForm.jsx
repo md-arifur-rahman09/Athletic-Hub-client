@@ -3,6 +3,7 @@ import { AuthContext } from '../../authContext/AuthContext';
 import { useNavigate, useParams } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import UseTitle from '../../hooks/UseTitle';
 
 
 
@@ -15,10 +16,11 @@ const BookingForm = () => {
     const { user } = use(AuthContext);
     const { id } = useParams();
     const navigate = useNavigate();
+    UseTitle('Booking Form')
 
 
     useEffect(() => {
-        fetch('http://localhost:3000/allEvents')
+        fetch('https://athletic-hub-server-blue.vercel.app/allEvents')
             .then(res => res.json())
             .then(data => {
                 setDatas(data);
@@ -31,10 +33,6 @@ const BookingForm = () => {
 
 
 
-
-
-
-
     //   if (loading) {
     //     return <Loading></Loading>
     // }
@@ -43,6 +41,7 @@ const BookingForm = () => {
 
     const remainingData = datas.find(d => d._id === id);
     // console.log(remainingData);
+
 
     const handleBack = () => {
         navigate(-1)
@@ -61,9 +60,9 @@ const BookingForm = () => {
         const eventBookingData = { eventId: id, ...bookingData }
 
 
-        axios.post('http://localhost:3000/bookings', eventBookingData)
-            .then(res => {
-                console.log(res.data);
+        axios.post('https://athletic-hub-server-blue.vercel.app/bookings', eventBookingData)
+            .then(() => {
+                // console.log(res.data);
 
 
                 Swal.fire({
@@ -73,17 +72,20 @@ const BookingForm = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-
-                // e.target.reset();
+                navigate('/myBookings')
+                e.target.reset();
 
             })
-            .catch(error => console.log(error))
+            .catch(() => {
+                // console.log(error)
+            })
     }
 
 
 
     return (
-        <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl mt-10">
+        <div className="max-w-2xl mx-auto  bg-cover bg-center p-8 rounded-2xl shadow-xl mt-10" >
+
             <button onClick={handleBack} className='btn btn-xs hover:bg-blue-400 sm:text-2xl lg:text-xs' > ⬅ <span className='hidden lg:block'>Go Back</span></button>
             <h2 className="text-2xl font-bold mb-6 text-center  ">Book for : <span className='text-cyan-800 '>{remainingData?.type} ({remainingData?.eventName})</span> </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
