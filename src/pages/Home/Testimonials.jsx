@@ -14,7 +14,7 @@ const Testimonials = () => {
     }, []);
 
     return (
-        <section className="my-16 max-w-6xl mx-auto px-4">
+        <section className="my-16 max-w-6xl mx-auto px-4 ">
             <h2 className="text-4xl font-bold text-center mb-10">What Our Users Say</h2>
             <div className="grid md:grid-cols-3 gap-6">
                 {testimonialsData?.map((t, index) => (
