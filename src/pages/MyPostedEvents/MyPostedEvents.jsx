@@ -45,7 +45,7 @@ const MyPostedEvents = () => {
                             setEvents(remaining);
                         }
                     })
-                    .catch((error) => {
+                    .catch(() => {
                         // console.log(error);
                     }
                     );

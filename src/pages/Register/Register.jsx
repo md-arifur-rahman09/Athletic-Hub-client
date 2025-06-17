@@ -79,13 +79,13 @@ const Logout = () => {
                 <form onSubmit={handleSubmit} className="fieldset">
 
                     <label className="label">Name</label>
-                    <input type="text" name='name' className="input" placeholder="Name" />
+                    <input type="text" name='name' className="input" placeholder="Name" required />
 
                     <label className="label">PhotoURL</label>
-                    <input type="url" name='photo' className="input" placeholder="PhotoURL" />
+                    <input type="url" name='photo' className="input" placeholder="PhotoURL" required />
 
                     <label className="label">Email</label>
-                    <input type="email" name='email' className="input" placeholder="Email" />
+                    <input type="email" name='email' className="input" placeholder="Email" required />
 
                     <label className="label">Password</label>
                     <input

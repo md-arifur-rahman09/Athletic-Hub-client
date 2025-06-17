@@ -39,7 +39,7 @@ const AllEvents = () => {
             {/*  Filtered Events Display */}
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-7 space-y-3 mx-10'>
                 {
-                    filteredEvents.map(event => (
+                    filteredEvents?.reverse().map(event => (
                         <Event key={event._id} event={event} />
                     ))
                 }

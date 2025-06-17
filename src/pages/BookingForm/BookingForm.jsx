@@ -72,7 +72,7 @@ const BookingForm = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/myBookings')
+                navigate('/allEvents')
                 e.target.reset();
 
             })

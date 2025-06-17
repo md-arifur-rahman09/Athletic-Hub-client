@@ -105,7 +105,7 @@ const AddEvent = () => {
     </div>
 
     {/* Entry Fee & Currency */}
-    <div className="flex flex-col md:flex-row gap-3 md:col-span-2">
+    <div className="flex gap-2">
       <div className="flex-1">
         <label htmlFor="entryFee" className="block text-sm font-medium text-gray-700 mb-1">Entry Fee</label>
         <input id="entryFee" type="number" name="entryFee" className="input input-bordered w-full" placeholder="Entry Fee" required/>

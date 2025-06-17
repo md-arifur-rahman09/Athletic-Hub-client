@@ -40,7 +40,7 @@ const Booking = ({ index, book, bookings, setBookings }) => {
                         setBookings(remainingEvents)
 
                     })
-                    .catch(error =>{
+                    .catch(() =>{
                         //  console.log(error);
                     })
 
