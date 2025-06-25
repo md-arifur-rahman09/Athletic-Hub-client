@@ -59,6 +59,8 @@ Athletic-Hub-client/
 
 ------
 
+
+##👟 How to run
 You can run the following commands from the root directory:
 
 npm run dev       # Start development server
