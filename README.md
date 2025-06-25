@@ -1,12 +1,57 @@
-# React + Vite
+# 🏃‍♂️ Athletic Hub - Client Side
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Athletic Hub** is a modern, responsive, and feature-rich web application for managing and showcasing sports-related services. This is the **frontend (client)** part of the full-stack application.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Website
 
-## Expanding the ESLint configuration
+🔗 [https://athletic-hub-7dbfe.web.app/](https://athletic-hub-7dbfe.web.app/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack & Libraries
+
+| Tool/Library          | Purpose                                  |
+|-----------------------|------------------------------------------|
+| **React 19**          | Frontend UI framework                    |
+| **Vite 6**            | Fast build tool and dev server           |
+| **React Router v7**   | Routing and navigation                   |
+| **Tailwind CSS v4**   | Utility-first CSS styling                |
+| **DaisyUI**           | Pre-designed Tailwind component library |
+| **Axios**             | HTTP client for API requests             |
+| **Firebase v11**      | Authentication & hosting                 |
+| **React Icons**       | Popular icon library                     |
+| **SweetAlert2**       | Custom alert modals                      |
+| **ESLint**            | Linting and code quality tool            |
+
+---
+
+## 🧾 Scripts Available
+
+```bash
+npm run dev       # Start development server
+npm run build     # Build the project
+npm run preview   # Preview production build
+npm run lint      # Run ESLint for linting
+
+---
+
+Athletic-Hub-client/
+├── public/
+│   └── index.html
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── layouts/
+│   ├── hooks/
+│   ├── pages/
+│   ├── routes/
+│   ├── App.jsx
+│   └── main.jsx
+└── vite.config.js
+
+---
+
+
+
