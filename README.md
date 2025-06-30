@@ -7,7 +7,7 @@ This is the **frontend (client)** part of the full-stack Athletic Hub project.
 
 ## 🌐 Live Website
 
-🔗 [https://athletic-hub-7dbfe.web.app/](https://athletic-hub-7dbfe.web.app/)
+🔗 [https://athletic-hub-7dbfe.web.app/] (https://athletic-hub-7dbfe.web.app/)
 
 ---
 
