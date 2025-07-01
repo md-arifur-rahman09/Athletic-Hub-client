@@ -2,14 +2,15 @@ import React, { use } from 'react';
 import { AuthContext } from '../../authContext/AuthContext';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import UseTitle from '../../hooks/UseTitle';
+import { useTitle } from '../../hooks/usetitle';
+
 
 
 
 const AddEvent = () => {
 
     const { user } = use(AuthContext);
-    UseTitle('Add Event')
+    useTitle('Add Event');
 
 
 

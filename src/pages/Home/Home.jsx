@@ -1,4 +1,5 @@
-import UseTitle from "../../hooks/UseTitle";
+
+import { useTitle } from "../../hooks/usetitle";
 import Events from "./Events";
 import PopularSports from "./PopularSports";
 import Slider from "./Slider";
@@ -7,7 +8,7 @@ import Testimonials from "./Testimonials";
 
 const eventsPromise = fetch('https://athletic-hub-server-blue.vercel.app/allEvents').then(res => res.json());
 const Home = () => {
-    UseTitle('Home')
+    useTitle('Home')
 
     return (
         <div>

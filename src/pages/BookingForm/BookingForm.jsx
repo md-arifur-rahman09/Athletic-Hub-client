@@ -3,7 +3,8 @@ import { AuthContext } from '../../authContext/AuthContext';
 import { useNavigate, useParams } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import UseTitle from '../../hooks/UseTitle';
+import { useTitle } from '../../hooks/usetitle';
+
 
 
 
@@ -16,7 +17,7 @@ const BookingForm = () => {
     const { user } = use(AuthContext);
     const { id } = useParams();
     const navigate = useNavigate();
-    UseTitle('Booking Form')
+    useTitle('Booking Form')
 
 
     useEffect(() => {

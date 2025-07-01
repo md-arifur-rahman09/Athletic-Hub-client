@@ -3,14 +3,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../authContext/AuthContext';
 import MyBookingEvents from './MyBookingEvents';
 import { bookingEventsPromise } from '../../api/bookingEventApi';
-import UseTitle from '../../hooks/UseTitle';
+import { useTitle } from '../../hooks/usetitle';
 
 
 
 const MyBookings = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
-    UseTitle('My Bookings')
+    useTitle('My Bookings')
 
 
 

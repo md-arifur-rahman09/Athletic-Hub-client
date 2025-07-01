@@ -2,11 +2,11 @@ import axios from 'axios';
 import React from 'react';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
-import UseTitle from '../../hooks/UseTitle';
+import { useTitle } from '../../hooks/usetitle';
 
 
 const UpdateEvent = () => {
-    UseTitle('Update Event')
+    useTitle ('Update Event');
     const event = useLoaderData();
 
     const { _id, eventName, type, date, localTime, location, image, participants, entryFee, currency, description } = event;

@@ -3,12 +3,12 @@ import React, { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../authContext/AuthContext';
-import UseTitle from '../../hooks/UseTitle';
+import { useTitle } from '../../hooks/usetitle';
 
 const MyPostedEvents = () => {
     const [events, setEvents] = useState([]);
     const { user } = use(AuthContext);
-    UseTitle('My Posted Events')
+    useTitle('My Posted Events')
 
 
     useEffect(() => {

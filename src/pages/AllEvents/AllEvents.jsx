@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import Event from './Event';
-import UseTitle from '../../hooks/UseTitle';
+import { useTitle } from '../../hooks/usetitle';
+
 
 const AllEvents = () => {
     const allEvents = useLoaderData();
     const [searchText, setSearchText] = useState("");
 
-    UseTitle('All Events');
+    useTitle('All Events');
 
     const filteredEvents = allEvents.filter(event =>
         event.eventName.toLowerCase().includes(searchText.toLowerCase()) ||

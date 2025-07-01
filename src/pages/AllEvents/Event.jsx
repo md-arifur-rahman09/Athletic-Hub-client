@@ -1,35 +1,64 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const Event = ({ event }) => {
-    const {  image, eventName, type, description, location, date, localTime, participants, entryFee, currency, _id } = event;
+    const navigate = useNavigate();
+    const {
+        image,
+        eventName,
+        type,
+        description,
+        location,
+        date,
+        localTime,
+        _id,
+    } = event;
+
+    const handleCard = () => {
+        navigate(`/event/${_id}`)
+    }
 
     return (
-        <div className="max-w-md mx-auto bg-white rounded-2xl shadow-lg overflow-hidden md:max-w-2xl my-10 transition transform hover:scale-105 hover:shadow-xl duration-300">
-            <div className="md:flex">
-                <div className="md:shrink-0">
-                    <img className="h-64 w-full object-cover md:w-72" src={image} alt={eventName} />
+        <div onClick={handleCard} className="bg-base-100 text-base-content rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:bg-gray-100 transition duration-300 transform hover:scale-[1.02]">
+            <div className="flex flex-col md:flex-row h-full">
+                {/* Image Section */}
+                <div className="md:w-2/5">
+                    <img
+                        className="h-64 w-full object-cover md:h-full"
+                        src={image}
+                        alt={eventName}
+                    />
                 </div>
-                <div className="p-6 flex flex-col justify-between">
-                    <div>
-                        <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{type}</div>
-                        <h2 className="block mt-1 text-xl leading-tight font-bold text-gray-900">{eventName}</h2>
-                        <p className="mt-2 text-gray-600 text-sm">{description}</p>
 
-                        <div className="mt-4 space-y-1 text-sm text-gray-700">
-                            <p><span className="font-semibold">📍 Location:</span> {location}</p>
-                            <p><span className="font-semibold">📅 Date:</span> {date}</p>
-                            <p><span className="font-semibold">⏰ Time:</span> {localTime}</p>
-                            <p><span className="font-semibold">👥 Participants:</span> {participants}</p>
-                            <p><span className="font-semibold">💵 Entry Fee:</span> {entryFee} {currency}</p>
+                {/* Content Section */}
+                <div className="p-6 flex flex-col md:w-3/5 h-full">
+                    <div>
+                        <span className="uppercase text-sm font-semibold text-primary tracking-wide">
+                            {type}
+                        </span>
+                        <h2 className="mt-1 text-xl font-bold leading-tight text-base-content">
+                            {eventName}
+                        </h2>
+                        <p className="mt-2 text-sm text-base-content/70">{description}</p>
+
+                        <div className="mt-4 text-sm space-y-1">
+                            <p>
+                                <span className="font-medium">📍 Location:</span> {location}
+                            </p>
+                            <p>
+                                <span className="font-medium">📅 Date:</span> {date}
+                            </p>
+                            <p>
+                                <span className="font-medium">⏰ Time:</span> {localTime}
+                            </p>
                         </div>
                     </div>
 
-                    {/*  Details Button */}
-                    <div className="mt-6">
+                    {/* Button fixed to bottom */}
+                    <div className="mt-auto pt-6">
                         <Link
                             to={`/event/${_id}`}
-                            className="inline-block bg-indigo-500 text-white px-5 py-2 rounded-xl hover:bg-indigo-600 transition"
+                            className="btn btn-sm md:btn-md bg-primary text-white hover:bg-primary-focus"
                         >
                             View Details
                         </Link>
