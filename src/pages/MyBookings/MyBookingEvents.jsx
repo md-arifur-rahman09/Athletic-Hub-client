@@ -14,7 +14,7 @@ const MyBookingEvents = ({ bookings, setBookings }) => {
       <div className="text-center mb-8">
         <button
           onClick={() => setIsTable(!isTable)}
-          className="btn btn-primary hover:bg-blue-400 px-6 text-base"
+          className="btn btn-sm btn-primary hover:bg-blue-400 px-2 text-base"
         >
           {isTable ? 'Card' : 'Table'} View 🔁
         </button>

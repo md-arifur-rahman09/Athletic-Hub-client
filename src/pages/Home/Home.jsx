@@ -13,12 +13,14 @@ const Home = () => {
 
     return (
         <div>
-        
-              <Slider></Slider>
-          
-           <div className="mt-5 lg:mx-10">
-             <Events eventsPromise={eventsPromise}> </Events>
-           </div>
+
+            <div >
+                <Slider></Slider>
+            </div>
+
+            <div className="mt-5 lg:mx-10">
+                <Events eventsPromise={eventsPromise}> </Events>
+            </div>
 
 
             <div className="mt-10">

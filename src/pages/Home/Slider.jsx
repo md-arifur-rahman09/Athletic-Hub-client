@@ -4,10 +4,10 @@ const Slider = () => {
   return (
     <div className="carousel w-full">
       {/* Slide 1 */}
-      <div id="slide1" className="carousel-item relative w-full aspect-video md:aspect-[16/9] h-[80vh] md:h-[90vh] overflow-hidden">
+      <div id="slide1" className="carousel-item relative w-full h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] overflow-hidden">
         <img
           src="https://i.postimg.cc/gJvF3H1Z/ath1.jpg"
-          className="w-full h-full object-cover brightness-75 will-change-transform"
+          className="w-full h-full object-cover object-center brightness-75"
           alt="Slide 1"
         />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 text-white z-20">
@@ -23,10 +23,10 @@ const Slider = () => {
       </div>
 
       {/* Slide 2 */}
-      <div id="slide2" className="carousel-item relative w-full aspect-video md:aspect-[16/9] h-[80vh] md:h-[90vh] overflow-hidden">
+      <div id="slide2" className="carousel-item relative w-full h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] overflow-hidden">
         <img
           src="https://i.postimg.cc/WbpLJr8d/ath2.jpg"
-          className="w-full h-full object-cover brightness-75 will-change-transform"
+          className="w-full h-full object-cover object-center brightness-75"
           alt="Slide 2"
         />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 text-white z-20">
@@ -42,10 +42,10 @@ const Slider = () => {
       </div>
 
       {/* Slide 3 */}
-      <div id="slide3" className="carousel-item relative w-full aspect-video md:aspect-[16/9] h-[80vh] md:h-[90vh] overflow-hidden">
+      <div id="slide3" className="carousel-item relative w-full h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] overflow-hidden">
         <img
           src="https://i.postimg.cc/NFpnxJD5/ath3.png"
-          className="w-full h-full object-cover brightness-75 will-change-transform"
+          className="w-full h-full object-cover object-center brightness-75"
           alt="Slide 3"
         />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 text-white z-20">
@@ -61,10 +61,10 @@ const Slider = () => {
       </div>
 
       {/* Slide 4 */}
-      <div id="slide4" className="carousel-item relative w-full aspect-video md:aspect-[16/9] h-[80vh] md:h-[90vh] overflow-hidden">
+      <div id="slide4" className="carousel-item relative w-full h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] overflow-hidden">
         <img
           src="https://i.postimg.cc/02yFNv5m/ath4.jpg"
-          className="w-full h-full object-cover brightness-75 will-change-transform"
+          className="w-full h-full object-cover object-center brightness-75"
           alt="Slide 4"
         />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 text-white z-20">
