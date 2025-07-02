@@ -3,11 +3,13 @@ import { AuthContext } from '../../authContext/AuthContext';
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { FcGoogle } from 'react-icons/fc';
+import { useTitle } from '../../hooks/usetitle';
 
 const Login = () => {
     const { loginUser, forgetPassword, googleSignIn } = use(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    useTitle('Login')
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
@@ -85,7 +87,7 @@ const Login = () => {
     };
 
     return (
-        <section className="pt-8  min-h-screen bg-base-100 px-4 text-base-content flex items-center justify-center">
+        <section className="py-8 pb- max-h-screen bg-base-100 px-4 text-base-content flex items-center justify-center">
             <div className="card w-full max-w-md shadow-md border border-base-300 dark:border-base-content/10 rounded-xl bg-base-100">
                 <div className="card-body space-y-5">
                     <h2 className="text-3xl md:text-4xl font-bold text-center text-base-content">

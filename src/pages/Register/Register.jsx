@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../authContext/AuthContext';
 import Swal from 'sweetalert2';
 import { FcGoogle } from 'react-icons/fc';
+import { useTitle } from '../../hooks/usetitle';
 
 const Register = () => {
     const { createUser, profileUpdate, googleSignIn } = use(AuthContext);
     const navigate = useNavigate();
+    useTitle("Register")
 
     const nameRef = useRef(null);
     const photoRef = useRef(null);
