@@ -4,117 +4,113 @@ import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../authContext/AuthContext';
 import { useTitle } from '../../hooks/usetitle';
+import { FaEye, FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const MyPostedEvents = () => {
-    const [events, setEvents] = useState([]);
-    const { user } = use(AuthContext);
-    useTitle('My Posted Events')
+  const [events, setEvents] = useState([]);
+  const { user } = use(AuthContext);
+  useTitle('My Posted Events');
 
+  useEffect(() => {
+    fetch(`https://athletic-hub-server-blue.vercel.app/events?email=${user.email}`, {
+      credentials: 'include'
+    })
+      .then((res) => res.json())
+      .then((data) => setEvents(data));
+  }, [user?.email]);
 
-    useEffect(() => {
-        fetch(`https://athletic-hub-server-blue.vercel.app/events?email=${user.email}`, {
-            credentials: 'include'
-        })
-            .then(res => res.json())
-            .then(data => setEvents(data));
-    }, [user?.email]);
-
-
-    const handleDelete = (id) => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios.delete(`https://athletic-hub-server-blue.vercel.app/events/${id}`)
-                    .then(res => {
-                        if (res.data.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your event has been deleted.",
-                                icon: "success"
-                            });
-
-
-                            const remaining = events?.filter(event => event._id !== id);
-                            setEvents(remaining);
-                        }
-                    })
-                    .catch(() => {
-                        // console.log(error);
-                    }
-                    );
-            }
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#2563eb',
+      cancelButtonColor: '#dc2626',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`https://athletic-hub-server-blue.vercel.app/events/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire('Deleted!', 'Your event has been deleted.', 'success');
+            const remaining = events?.filter((event) => event._id !== id);
+            setEvents(remaining);
+          }
         });
-    };
+      }
+    });
+  };
 
-    return (
-        <div className="overflow-x-auto">
-            <h1 className='text-4xl text-center font-bold my-10'>My Total Posted Events : {events.length}</h1>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Event</th>
+  return (
+    <div className="pt-12 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pb-16 text-base-content">
+      <h1 className="text-3xl md:text-4xl font-bold text-center mb-10 text-base-content">
+        My Total Posted Events: {events.length}
+      </h1>
 
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>HR</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        events?.map((event, index) => (
-                            <tr key={event._id}>
-                                <td>{index + 1}</td>
-                                <td>
-                                    <div className="flex items-center gap-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle h-12 w-12">
-                                                <img src={event.image} alt="event" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="font-bold">
-                                                {event.eventName}
-                                            </div>
-                                            <div className="text-sm opacity-50">{event.location}</div>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td>{event.type}</td>
-                                <td>{event.description}</td>
-                                <td>
-                                    <span className='font-bold'>  {event.hr_email}</span>
-                                    <br />
-                                    {event.hr_name}
-
-                                </td>
-                                <td>
-
-                                    <Link to={`/details/${event._id}`} className='btn btn-xs btn-success text-white mb-1'> details</Link>
-                                    <br />
-
-                                    <Link to={`/update/${event._id}`}>
-                                        <button className="btn btn-info btn-xs mb-1 text-white  ">Update</button>
-                                    </Link>
-                                    <br />
-                                    <button onClick={() => handleDelete(event._id)} className="btn btn-error btn-xs text-white ">Delete</button>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-        </div>
-    );
+      <div className="overflow-x-auto rounded-xl border border-base-300 dark:border-base-content/10 bg-base-100 shadow-sm">
+        <table className="table text-sm md:text-base">
+          <thead className="bg-base-200 text-base-content">
+            <tr>
+              <th>#</th>
+              <th>Event</th>
+              <th>Type</th>
+              <th>Description</th>
+              <th>HR</th>
+              <th className="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {events?.map((event, index) => (
+              <tr key={event._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img src={event.image} alt="event" />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-semibold">{event.eventName}</div>
+                      <div className="text-sm text-base-content/60">{event.location}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>{event.type}</td>
+                <td className="max-w-xs text-base-content/80">{event.description}</td>
+                <td>
+                  <span className="font-semibold">{event.hr_email}</span>
+                  <br />
+                  <span className="text-base-content/70">{event.hr_name}</span>
+                </td>
+                <td>
+                  <div className="flex justify-center gap-3">
+                    <Link to={`/details/${event._id}`} title="Details">
+                      <button className="btn btn-sm btn-ghost text-info hover:bg-info/10">
+                        <FaEye className="text-lg" />
+                      </button>
+                    </Link>
+                    <Link to={`/update/${event._id}`} title="Update">
+                      <button className="btn btn-sm btn-ghost text-primary hover:bg-primary/10">
+                        <FaEdit className="text-lg" />
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(event._id)}
+                      title="Delete"
+                      className="btn btn-sm btn-ghost text-error hover:bg-error/10"
+                    >
+                      <FaTrashAlt className="text-lg" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default MyPostedEvents;

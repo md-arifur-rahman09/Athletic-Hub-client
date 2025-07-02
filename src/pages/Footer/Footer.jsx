@@ -1,73 +1,74 @@
 import React from 'react';
+import { FaFacebookF, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router';
+import athLogo from '../../assets/ath-logo.jpg';
 
 const Footer = () => {
     return (
-        <footer>
-
-            <div className="footer sm:footer-horizontal bg-gray-200  p-10">
-                <aside>
-                    <Link to='/'> <img className='w-20 h15' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJkB0Kac13ami8VkzsespZSAFcAgsi_hHbw&s" alt="" /></Link>
-
+        <footer className="bg-base-300 text-base-content">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 items-start">
+                {/* Logo */}
+                <aside className="flex justify-center sm:justify-start">
+                    <Link to="/" className="flex items-center gap-2">
+                        <img className="w-20 h-auto rounded bg-white p-1 dark:bg-white" src={athLogo} alt="Athletic Hub Logo" />
+                    </Link>
                 </aside>
-                <div>
+
+                {/* Navigation Links */}
+                <div className="text-center sm:text-left">
                     <ul>
-
-                        <li className='text-lg font-medium text-gray-600 mb-2 hover:text-blue-400'><Link to='about'>About</Link></li>
-
-                        <li className='text-lg font-medium text-gray-600 mb-2 hover:text-blue-400'><Link to='services'> Services</Link></li>
-
-                        <li className='text-lg font-medium text-gray-600 mb-2 hover:text-blue-400' ><Link to='/terms'> Terms & Conditions</Link></li>
-
-
+                        <li className="text-lg font-medium mb-2 hover:text-primary transition duration-200">
+                            <Link to="/about">About</Link>
+                        </li>
+                        <li className="text-lg font-medium mb-2 hover:text-primary transition duration-200">
+                            <Link to="/services">Services</Link>
+                        </li>
+                        <li className="text-lg font-medium mb-2 hover:text-primary transition duration-200">
+                            <Link to="/terms">Terms & Conditions</Link>
+                        </li>
                     </ul>
                 </div>
-                <nav>
-                    <h6 className="footer-title">Social</h6>
-                    <div className="grid grid-flow-col gap-4">
-                        <a href='https://x.com/Arifkhondokar12 ' className='hover:text-blue-400'>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                className="fill-current">
-                                <path
-                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-                            </svg>
+
+                {/* Social Media Icons */}
+                <nav className="text-center sm:text-right">
+                    <h6 className="footer-title mb-4 font-semibold text-lg">Follow Us</h6>
+                    <div className="flex justify-center sm:justify-end gap-4">
+                        <a
+                            href="https://x.com/Arifkhondokar12"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-full hover:bg-primary/10 transition"
+                            title="Twitter / X"
+                        >
+                            <FaTwitter className="text-xl text-base-content hover:text-primary transform hover:scale-110 duration-300" />
                         </a>
-                        <a href='https://www.youtube.com/' className='hover:text-blue-400'>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                className="fill-current">
-                                <path
-                                    d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-                            </svg>
+                        <a
+                            href="https://www.youtube.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-full hover:bg-error/10 transition"
+                            title="YouTube"
+                        >
+                            <FaYoutube className="text-xl text-base-content hover:text-error transform hover:scale-110 duration-300" />
                         </a>
-                        <a href='https://www.facebook.com/arif.khondokar09' className='hover:text-blue-400'>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                className="fill-current">
-                                <path
-                                    d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-                            </svg>
+                        <a
+                            href="https://www.facebook.com/arif.khondokar09"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-full hover:bg-blue-600/10 transition"
+                            title="Facebook"
+                        >
+                            <FaFacebookF className="text-xl text-base-content hover:text-blue-600 transform hover:scale-110 duration-300" />
                         </a>
                     </div>
                 </nav>
-
             </div>
-            <div className=" sm:footer-horizontal bg-gray-200 text-gray-600 items-center p-4">
-                <aside className="text-center bg-blue-200 py-1">
-                   
-                    <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
-                </aside>
-            
+
+            {/* Bottom Bar */}
+            <div className="bg-base-200 text-center py-4">
+                <p className="text-sm text-base-content/60">
+                    © {new Date().getFullYear()} Athletic Hub. All rights reserved.
+                </p>
             </div>
         </footer>
     );

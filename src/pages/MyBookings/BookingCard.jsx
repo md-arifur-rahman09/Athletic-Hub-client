@@ -7,18 +7,18 @@ const BookingCard = ({ book, bookings, setBookings }) => {
 
     const handleCancel = (id) => {
         Swal.fire({
-            title: "Are you sure?",
+            title: 'Are you sure?',
             text: "You won't be able to revert this!",
-            icon: "warning",
+            icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
                 axios.delete(`https://athletic-hub-server-blue.vercel.app/bookings/${id}`)
                     .then(() => {
-                        Swal.fire("Deleted!", "Your booking has been deleted.", "success");
+                        Swal.fire('Deleted!', 'Your booking has been deleted.', 'success');
                         const remaining = bookings?.filter(b => b._id !== id);
                         setBookings(remaining);
                     })
@@ -28,21 +28,21 @@ const BookingCard = ({ book, bookings, setBookings }) => {
     };
 
     return (
-        <div className="card bg-base-100 shadow-md p-4">
-            <img src={image} alt={eventName} className="rounded-md h-40 w-full object-cover" />
-            <div className="mt-3">
-                <h2 className="font-bold text-lg">{eventName}</h2>
+        <div className="bg-base-100 text-base-content border border-base-300 dark:border-base-content/10 rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+            <img src={image} alt={eventName} className="rounded-lg h-40 w-full object-cover mb-4" />
+            <h2 className="text-xl font-semibold mb-2">{eventName}</h2>
+            <div className="text-sm space-y-1 text-base-content/80">
                 <p><strong>Name:</strong> {name}</p>
                 <p><strong>Email:</strong> {email}</p>
                 <p><strong>Phone:</strong> {phone}</p>
                 <p><strong>Type:</strong> {type}</p>
-                <button
-                    onClick={() => handleCancel(_id)}
-                    className="btn btn-error btn-sm text-white mt-2"
-                >
-                    Cancel Booking
-                </button>
             </div>
+            <button
+                onClick={() => handleCancel(_id)}
+                className="btn btn-error btn-sm w-full mt-4"
+            >
+                Cancel Booking
+            </button>
         </div>
     );
 };

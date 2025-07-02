@@ -65,7 +65,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-base-100 text-base-content shadow-md">
+        <div className=" bg-base-100 text-base-content shadow-md">
             <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-10">
                 <div className="navbar">
                     <div className="navbar-start">
@@ -85,7 +85,9 @@ const Navbar = () => {
                                 {links}
                             </ul>
                         </div>
-                        <Link to='/' className="btn btn-ghost text-xl">Athletic Hub</Link>
+                        <Link to='/' className="btn btn-ghost text-2xl font-bold">
+                        Athletic Hub
+                        </Link>
                     </div>
 
                     <div className="navbar-center hidden lg:flex">

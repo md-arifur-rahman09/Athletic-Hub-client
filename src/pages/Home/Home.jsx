@@ -1,6 +1,7 @@
 
 import { useTitle } from "../../hooks/usetitle";
 import Events from "./Events";
+import FindClubs from "./FindClubs";
 import PopularSports from "./PopularSports";
 import Slider from "./Slider";
 import Testimonials from "./Testimonials";
@@ -12,8 +13,12 @@ const Home = () => {
 
     return (
         <div>
-            <Slider></Slider>
-            <Events eventsPromise={eventsPromise}> </Events>
+        
+              <Slider></Slider>
+          
+           <div className="mt-5 lg:mx-10">
+             <Events eventsPromise={eventsPromise}> </Events>
+           </div>
 
 
             <div className="mt-10">
@@ -23,6 +28,9 @@ const Home = () => {
             </div>
             <div className="mt-10">
                 <PopularSports ></PopularSports>
+            </div>
+            <div className="mt-10">
+                <FindClubs></FindClubs>
             </div>
 
         </div>

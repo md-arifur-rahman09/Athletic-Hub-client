@@ -5,6 +5,8 @@ const Event = ({ event }) => {
     const navigate = useNavigate();
     const {
         image,
+        entryFee,
+        currency,
         eventName,
         type,
         description,
@@ -19,7 +21,11 @@ const Event = ({ event }) => {
     }
 
     return (
-        <div onClick={handleCard} className="bg-base-100 text-base-content rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:bg-gray-100 transition duration-300 transform hover:scale-[1.02]">
+        <div
+            onClick={handleCard}
+            className="bg-base-100 text-base-content border border-base-300 dark:border-base-content/20 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 transform hover:scale-[1.02] cursor-pointer "
+        >
+
             <div className="flex flex-col md:flex-row h-full">
                 {/* Image Section */}
                 <div className="md:w-2/5">
@@ -51,6 +57,9 @@ const Event = ({ event }) => {
                             <p>
                                 <span className="font-medium">⏰ Time:</span> {localTime}
                             </p>
+                            <p>
+                                <span className="font-medium">💵 Entry Fee: </span> {entryFee} {currency}
+                            </p>
                         </div>
                     </div>
 
@@ -58,7 +67,7 @@ const Event = ({ event }) => {
                     <div className="mt-auto pt-6">
                         <Link
                             to={`/event/${_id}`}
-                            className="btn btn-sm md:btn-md bg-primary text-white hover:bg-primary-focus"
+                            className="btn btn-sm md:btn-md bg-primary text-white hover:bg-primary-focus w-full"
                         >
                             View Details
                         </Link>

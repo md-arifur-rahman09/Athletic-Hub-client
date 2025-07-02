@@ -22,16 +22,17 @@ const EventDetails = () => {
     } = eventDetails;
 
     return (
-        <div className="px-4 sm:px-6 md:px-12 py-8 max-w-6xl mx-auto">
+        <div className="px-4 sm:px-6 md:px-12 py-8 max-w-7xl mx-auto">
             {/* Back Button */}
-           <div className="flex justify-start mb-4  mt-10">
-  <button
-    onClick={() => navigate(-1)}
-    className="btn btn-sm btn-outline bg-base-100 text-base-content hover:bg-primary hover:text-white"
-  >
-    ⬅ Back
-  </button>
-</div>
+            <div className="flex justify-start mb-4  mt-10">
+                {/* Back Button */}
+                <button
+                    onClick={() => navigate(-1)}
+                    className="btn btn-xs  btn-primary mb-6 hover:bg-blue-300"
+                >
+                    ⬅ Back
+                </button>
+            </div>
 
 
             {/* Title */}
@@ -53,7 +54,7 @@ const EventDetails = () => {
                 {/* Details */}
                 <div className="w-full lg:w-3/5 p-6 flex flex-col justify-between">
                     <div>
-                        <p className="uppercase text-sm text-primary font-semibold">{type}</p>
+                        <p className="uppercase text-sm text-base-content font-semibold">{type}</p>
                         <h2 className="text-2xl font-bold mt-1">{eventName}</h2>
                         <p className="text-sm mt-2 text-base-content/70">{description}</p>
 

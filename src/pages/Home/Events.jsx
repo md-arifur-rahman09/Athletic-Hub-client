@@ -5,7 +5,7 @@ const Events = ({ eventsPromise }) => {
     const events = use(eventsPromise);
 
     return (
-        <div className="py-12 px-4 sm:px-8 md:px-16">
+        <div className="py-12 px-4 sm:px-8 md:px-12">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-base-content">
                 Latest Events
             </h2>
