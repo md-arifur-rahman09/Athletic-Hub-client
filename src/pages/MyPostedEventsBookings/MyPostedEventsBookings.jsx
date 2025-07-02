@@ -25,7 +25,7 @@ const MyPostedEventsBookings = () => {
   }, [user, id]);
 
   return (
-    <div className="pt-12 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pb-16 text-base-content">
+    <div className="pt-12 max-w-7xl mx-auto  md:px-5 pb-16 text-base-content">
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
