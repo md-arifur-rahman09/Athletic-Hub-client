@@ -1,14 +1,14 @@
-import React, { useRef, use } from 'react';
+import React, { use, useRef } from 'react';
 import { AuthContext } from '../../authContext/AuthContext';
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router';
+import { FcGoogle } from 'react-icons/fc';
 
 const Login = () => {
     const { loginUser, forgetPassword, googleSignIn } = use(AuthContext);
     const navigate = useNavigate();
-    const location= useLocation();
+    const location = useLocation();
 
-    // Creating references for email input
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
@@ -17,111 +17,143 @@ const Login = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
 
-        // console.log(email, password);
-
-        // Login user
         loginUser(email, password)
             .then(() => {
-                // console.log(result.user);
                 Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "You are successfully logged in",
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'You are successfully logged in',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
                 });
-                navigate(location.state|| '/');
+                navigate(location.state || '/');
             })
-            .catch(error => {
-                console.error("Login Error:", error);
+            .catch((error) => {
                 Swal.fire({
-                    icon: "error",
-                    title: "Login Failed",
-                    text: error.message
-                });
-            });
-    };
-
-    // Forget Password Function
-    const handleForgetPassword = () => {
-        const email = emailRef.current.value;
-        if (!email) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Please enter your email before requesting a password reset.",
-            });
-            return;
-        }
-
-        forgetPassword(email)
-            .then(() => {
-                Swal.fire({
-                    icon: "info",
-                    title: "Password Reset Email Sent!",
-                    text: "Check your inbox to reset your password.",
-                });
-            })
-            .catch(error => {
-                console.error("Forgot Password Error:", error);
-                Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: 'error',
+                    title: 'Login Failed',
                     text: error.message,
                 });
             });
     };
 
-    // google signin
+    const handleForgetPassword = () => {
+        const email = emailRef.current.value;
+        if (!email) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'Missing Email',
+                text: 'Please enter your email first.',
+            });
+        }
+
+        forgetPassword(email)
+            .then(() => {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Password reset email sent',
+                    text: 'Please check your inbox.',
+                });
+            })
+            .catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: error.message,
+                });
+            });
+    };
 
     const handleGoogle = () => {
         googleSignIn()
             .then(() => {
-                // console.log(result.user);
                 Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "You are successfully logged in",
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Logged in with Google',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
                 });
                 navigate(location.state || '/');
-
             })
-            .catch(()=> {
-                // console.log(error.message);
-            })
-    }
-
+            .catch(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Google Sign-In Failed',
+                });
+            });
+    };
 
     return (
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto my-10">
-            <div className="card-body">
-                <h1 className="text-5xl font-bold mb-3">Login now!</h1>
+        <section className="pt-8  min-h-screen bg-base-100 px-4 text-base-content flex items-center justify-center">
+            <div className="card w-full max-w-md shadow-md border border-base-300 dark:border-base-content/10 rounded-xl bg-base-100">
+                <div className="card-body space-y-5">
+                    <h2 className="text-3xl md:text-4xl font-bold text-center text-base-content">
+                        Login Now 👋
+                    </h2>
 
-                <form onSubmit={handleSubmit} className='space-y-2'>
-                    <label className="label">Email</label>
-                    <input type="email" ref={emailRef} className="input" placeholder="Email" required />
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                            <label htmlFor="email" className="label label-text text-base-content/70">
+                                Email
+                            </label>
+                            <input
+                                ref={emailRef}
+                                type="email"
+                                id="email"
+                                name="email"
+                                className="input input-bordered w-full"
+                                placeholder="you@example.com"
+                                required
+                            />
+                        </div>
 
-                    <label className="label">Password</label>
-                    <input type="password" ref={passwordRef} className="input" placeholder="Password" required />
+                        <div>
+                            <label htmlFor="password" className="label label-text text-base-content/70">
+                                Password
+                            </label>
+                            <input
+                                ref={passwordRef}
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="input input-bordered w-full"
+                                placeholder="••••••••"
+                                required
+                            />
+                        </div>
 
-                    <div onClick={handleForgetPassword} className="cursor-pointer text-blue-400 underline">
-                        <span>Forgot password?</span>
-                    </div>
+                        <div
+                            onClick={handleForgetPassword}
+                            className="text-sm text-right cursor-pointer text-primary hover:underline"
+                        >
+                            Forgot password?
+                        </div>
 
-                    <button className="btn btn-neutral w-full mt-4">Login</button>
-                </form>
-                {/* Google */}
-                <button onClick={handleGoogle} className="btn bg-gray-200 text-black border-[#e5e5e5] mt-2">
-                    <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-                    Login with Google
-                </button>
+                        <button type="submit" className="btn btn-primary w-full text-base">
+                            Login
+                        </button>
+                    </form>
 
-                <p className='mt-3'>Don't have any account.please <Link to='/register' className='text-blue-400 underline'> register</Link></p>
+                    <div className="divider text-sm text-base-content/60">or</div>
+
+                    <button
+                        onClick={handleGoogle}
+                        className="btn w-full bg-base-200 border border-base-300 dark:border-base-content/20 hover:bg-base-300 text-base-content"
+                    >
+                        <FcGoogle className="text-xl mr-2" />
+                        Continue with Google
+                    </button>
+
+                    <p className="text-sm text-center text-base-content/70">
+                        Don’t have an account?{' '}
+                        <Link to="/register" className="text-primary font-medium hover:underline">
+                            Register here
+                        </Link>
+                    </p>
+                </div>
             </div>
-
-        </div>
+        </section>
     );
 };
 

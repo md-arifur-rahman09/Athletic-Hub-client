@@ -6,17 +6,22 @@ import Loading from '../pages/Loading/Loading';
 
 const Root = () => {
     return (
-        <div >
-            <nav>
-                <Navbar></Navbar>
-            </nav>
-            <main className='min-h-screen mb-10'>
-                <Suspense fallback={<h2><Loading></Loading></h2>}>
-                    <Outlet></Outlet>
+        <div className="flex flex-col min-h-screen">
+            {/* Fixed Navbar */}
+            <header className="fixed top-0 left-0 right-0 z-50 bg-base-100 shadow-md">
+                <Navbar />
+            </header>
+
+            {/* Main content with top padding */}
+            <main className="flex-grow pt-16 px-4 md:px-6 lg:px-8">
+                <Suspense fallback={<Loading />}>
+                    <Outlet />
                 </Suspense>
             </main>
-            <footer>
-                <Footer></Footer>
+
+            {/* Footer */}
+            <footer className="bg-base-200">
+                <Footer />
             </footer>
         </div>
     );
