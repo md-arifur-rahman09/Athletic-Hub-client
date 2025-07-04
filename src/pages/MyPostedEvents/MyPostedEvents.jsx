@@ -5,10 +5,14 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../authContext/AuthContext';
 import { useTitle } from '../../hooks/usetitle';
 import { FaEye, FaEdit, FaTrashAlt } from 'react-icons/fa';
+import Loading from '../Loading/Loading';
 
 const MyPostedEvents = () => {
   const [events, setEvents] = useState([]);
+
+  const [loading, setLoading] = useState(true);
   const { user } = use(AuthContext);
+
   useTitle('My Posted Events');
 
   useEffect(() => {
@@ -16,8 +20,15 @@ const MyPostedEvents = () => {
       credentials: 'include'
     })
       .then((res) => res.json())
-      .then((data) => setEvents(data));
+      .then((data) => {
+        setEvents(data);
+        setLoading(false);
+      });
   }, [user?.email]);
+
+  if (loading) {
+    return <Loading></Loading>
+  }
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -44,7 +55,7 @@ const MyPostedEvents = () => {
   return (
     <div className="pt-12 max-w-7xl mx-auto md:px-5 pb-16 text-base-content">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-10 text-base-content">
-        My Total Posted Events: {events.length}
+        My Total Posted Events: {events?.length}
       </h1>
 
       <div className="overflow-x-auto rounded-xl border border-base-300 dark:border-base-content/10 bg-base-100 shadow-sm">

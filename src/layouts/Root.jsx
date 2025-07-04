@@ -13,7 +13,7 @@ const Root = () => {
             </header>
 
             {/* Main content with top padding */}
-            <main className="flex-grow pt-16 px-4 md:px-6 lg:px-8">
+            <main className="flex-grow pt-16 px-4 md:px-6 lg:px-0">
                 <Suspense fallback={<Loading />}>
                     <Outlet />
                 </Suspense>

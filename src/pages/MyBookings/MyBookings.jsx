@@ -4,13 +4,18 @@ import { AuthContext } from '../../authContext/AuthContext';
 import MyBookingEvents from './MyBookingEvents';
 import { bookingEventsPromise } from '../../api/bookingEventApi';
 import { useTitle } from '../../hooks/usetitle';
+import Loading from '../Loading/Loading';
+
 
 
 
 const MyBookings = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
-    useTitle('My Bookings')
+    const[loading,setLoading]= useState(true);
+    useTitle('My Bookings');
+
+
 
 
 
@@ -20,12 +25,14 @@ const MyBookings = () => {
         bookingEventsPromise(user.email)
             .then(data => {
                 setBookings(data);
-
-
-
+                setLoading(false)
             });
 
     }, [user?.email]);
+
+    if(loading){
+    return <Loading></Loading>
+}
 
 
 

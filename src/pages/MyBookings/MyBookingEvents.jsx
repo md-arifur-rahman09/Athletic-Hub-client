@@ -4,6 +4,7 @@ import BookingCard from './BookingCard';
 
 const MyBookingEvents = ({ bookings, setBookings }) => {
   const [isTable, setIsTable] = useState(true);
+  
 
   return (
     <div className="pt-12 max-w-7xl mx-auto md:px-5  pb-10 text-base-content">

@@ -37,7 +37,7 @@ const AllEvents = () => {
         <div className="pt-24 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pb-16 text-base-content">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                 <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left">
-                    Total Events: {sortedEvents.length}
+                    Total Events: {sortedEvents?.length}
                 </h1>
 
                 {/* Search + Sort */}
